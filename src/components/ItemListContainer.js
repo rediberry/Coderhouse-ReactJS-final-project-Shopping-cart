@@ -1,12 +1,13 @@
 import { getDocs, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Spinner } from "reactstrap";
 import { useModal } from "../customHooks/useModal";
 import { productsCollection } from "../utils/firebase";
 import ItemList from "./ItemList";
 import Modal from "./Modal";
-// import "./style.scss";
+import styled from 'styled-components'
+import Loading from "./Loading";
+import PageHero from "./PageHero";
 
 const ItemListContainer = ({ greeting }) => {
   const [productsList, setProductsList] = useState([]);
@@ -15,11 +16,6 @@ const ItemListContainer = ({ greeting }) => {
   const { category } = useParams();
 
   useEffect(() => {
-    // getDocs(productsCollection)
-    // .then((data)=>{
-    //   console.log(data);
-    // })
-
     const getProducts = (param) => {
       getDocs(param)
         .then((snapshot) => {
@@ -52,22 +48,30 @@ const ItemListContainer = ({ greeting }) => {
   }, [category]);
 
   return (
-    <>
-      <h1 className="greeting">{greeting}</h1>
-      {load ? (
-        <ItemList productsList={productsList} />
-      ) : (
-        <div className="spinner">
-          <Spinner color="light"></Spinner>
-        </div>
-      )}
+      <Wrapper>
+        {(!category)?<PageHero title={greeting} />:<PageHero title={category} />}
+        {load ? (
+          <div className='section-center products'>
+          <ItemList productsList={productsList} />
+          </div>
+        ) : (
+          <Loading/>
+        )}
 
-      <Modal isOpen={isOpenProdsErr} closeModal={closeModalProdsErr}>
-        <h3>Ocurrió un error al mostrar el listado de productos</h3>
-        <p>Por favor intenta nuevamente</p>
-      </Modal>
-    </>
+        <Modal isOpen={isOpenProdsErr} closeModal={closeModalProdsErr}>
+          <h3>Ocurrió un error al mostrar el listado de productos</h3>
+          <p>Por favor intenta nuevamente</p>
+        </Modal>
+      </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+.greeting {
+  font-size: 30px;
+  text-align: center;
+  margin-top: 40px;
+}
+`
 
 export default ItemListContainer;

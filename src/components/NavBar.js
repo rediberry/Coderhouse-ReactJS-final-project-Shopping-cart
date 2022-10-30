@@ -1,22 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 import logo from '../assets/logo.png'
-import { FaBars } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { links } from '../utils/constants'
-import CartButtons from './CartWidget'
+import CartWidget from './CartWidget'
 
 const Nav = () => {
     return (
         <NavContainer>
             <div className='nav-center'>
                 <div className='nav-header'>
-                    <Link to='/'>
-                        <img src={logo} alt='changas store'/>
-                    </Link>
-                    <button type='button' className='nav-toggle'>
-                        <FaBars />
-                    </button>
+                  <Link to='/'>
+                      <img src={logo} alt='changas store'/>
+                  </Link>
                 </div>
                 <ul className='nav-links'>
                     {links.map((link) => {
@@ -28,7 +24,7 @@ const Nav = () => {
                     )
                     })}
                 </ul>
-                <CartButtons/>
+                <CartWidget/>
             </div>
         </NavContainer>
     )
@@ -53,25 +49,16 @@ const NavContainer = styled.nav`
       margin-left: -15px;
     }
   }
-  .nav-toggle {
-    background: transparent;
-    border: transparent;
-    color: var(--clr-primary-5);
-    cursor: pointer;
-    svg {
-      font-size: 2rem;
-    }
-  }
+
   .nav-links {
     display: none;
   }
   .cart-btn-wrapper {
     display: none;
   }
+
   @media (min-width: 992px) {
-    .nav-toggle {
-      display: none;
-    }
+
     .nav-center {
       display: grid;
       grid-template-columns: auto 1fr auto;

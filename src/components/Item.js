@@ -1,24 +1,80 @@
 import { Link } from "react-router-dom";
-import { Button, Card, CardBody, CardSubtitle, CardTitle } from "reactstrap";
-// import "./style.scss";
+import { FaSearch } from 'react-icons/fa';
+import styled from 'styled-components'
+import { formatPrice } from '../utils/helpers'
 
 const Item = ({ product }) => {
   return (
-    <Card color="dark" style={{ width: "18rem", margin: "1rem", }}>
-      <img alt={product.name} src={product.image} className="product-img" />
-      <CardBody className="card-product">
-        <CardTitle tag="h5">{product.name}</CardTitle>
-        <CardSubtitle className="mb-2 text-muted" tag="h6">
-          ${product.price}
-        </CardSubtitle>
-        <Button color="dark" outline size="sm">
-          <Link className="btn-detail" to={`product/${product.id}`}>
-            Ver detalle
-          </Link>
-        </Button>
-      </CardBody>
-    </Card>
+    <Wrapper>
+      <div className='container'>
+        <img alt={product.name} src={product.image} className="product-img" />
+        <Link className="link" to={`product/${product.id}`}>
+          <FaSearch />
+        </Link>
+      </div>
+      <footer>
+        <h5>{product.name}</h5>
+        <p>{formatPrice(product.price)}</p>
+      </footer>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.article`
+  .container {
+    position: relative;
+    background: var(--clr-black);
+    border-radius: var(--radius);
+    box-shadow: 10px 10px 8px #888888;
+  }
+  img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: var(--radius);
+    transition: var(--transition);
+  }
+  .link {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--clr-primary-5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    transition: var(--transition);
+    opacity: 0;
+    cursor: pointer;
+    svg {
+      font-size: 1.25rem;
+      color: var(--clr-white);
+    }
+  }
+  .container:hover img {
+    opacity: 0.5;
+  }
+  .container:hover .link {
+    opacity: 1;
+  }
+  footer {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer h5,
+  footer p {
+    margin-bottom: 0;
+    font-weight: 400;
+  }
+  footer p {
+    color: var(--clr-primary-5);
+    letter-spacing: var(--spacing);
+  }
+`
 
 export default Item;
