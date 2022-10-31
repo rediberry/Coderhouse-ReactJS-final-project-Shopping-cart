@@ -22,7 +22,10 @@ Es un carrito de compras hecho con ReactJS para el curso de Coderhouse
 * Para esta versión falta la optimización para ser 100% responsive.
 
 ## Para ver el proyecto:
-[![App](https://img.shields.io/badge/App-informational?style=for-the-badge&logo=netlify&logoColor=fff&color=23272d)](https://)
+[![App](https://img.shields.io/badge/App-informational?style=for-the-badge&logo=netlify&logoColor=fff&color=23272d)](https://changas-store-react.netlify.app)
+
+## Para ver demo del proyecto:
+https://loom.com/share/628b81d06ee646f09e7dbe1f5bf7ba67
 
 ## Para poder clonar y usar el proyecto 
 
