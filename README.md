@@ -16,9 +16,10 @@ Es un carrito de compras hecho con ReactJS para el curso de Coderhouse
 * Navegar por el home y ver todos los productos
 * Ingresar al detalle de cada producto.
 * Agregar y quitar productos al carrito.
-* Para esta versión no se utilizó local storage por lo tanto el carrito no es persistente.
 * Ingresar al carrito para ver el total de items y eliminar items.
 * Completar el checkout para recibir el código de la compra por e-mail (Para esta demo el checlout es un simple form).
+* Para esta versión no se utilizó local storage por lo tanto el carrito no es persistente.
+* Para esta versión falta la optimización para ser 100% responsive.
 
 ## Para ver el proyecto:
 [![App](https://img.shields.io/badge/App-informational?style=for-the-badge&logo=netlify&logoColor=fff&color=23272d)](https://)
